@@ -7,6 +7,7 @@ Router
 	.get('/categorias', CategoriasController.getCategorias)
 	.get('/categorias/:id', CategoriasController.getCategoria)
 	.post('/categorias',CategoriasController.postCategoria)
+	.delete('/categorias/:id',CategoriasController.deleteCategoria)
     
 
 
