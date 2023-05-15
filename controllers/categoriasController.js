@@ -13,14 +13,23 @@ export default class CategoriasController{
 	}
 	static postCategoria = async(req,res)=>{
 		try {
-			const nome = req.body.nome
+			const {nome,subcategorias} = req.body
 			const novaCategoria = {
-				nome
+				nome,
+				subcategorias
 			}
 			await categorias.create(novaCategoria)
 			res.status(201).json({message: 'categoria criada com sucesso'})
 		} catch (error) {
 			res.status(400).json({error: `${error}`})
+		}
+	}
+	static deleteCategoria = async(req,res) =>{
+		try {
+			const categoriaDeletada = await categorias.findByIdAndDelete(req.params.id)
+			res.status(200).json({message: 'categoria deletada', categoria: categoriaDeletada })
+		} catch (error) {
+			console.log(error)
 		}
 	}
 

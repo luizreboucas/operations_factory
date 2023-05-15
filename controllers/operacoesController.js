@@ -11,15 +11,16 @@ export default class OperacoesController{
 	}
 	static postOperacao = async(req,res)=>{
 		try {
-			const {tipo,categoria,valor,descricao} = req.body
+			const {subcategoria,categoria,valor,descricao} = req.body
 			const data = new Date()
 			const novaOperacao = {
-				tipo,categoria,valor,data,descricao
+				subcategoria,categoria,valor,data,descricao
 			}
+			console.log(novaOperacao)
 			await operacoes.create(novaOperacao)
 			res.status(201).json({message: 'nova operação realizada'})
 		} catch (error) {
-			res.status(400).json({error: `${error}`})
+			res.status(400).json({erroDoServidor: `${error}`})
 		}
 	}
 }
